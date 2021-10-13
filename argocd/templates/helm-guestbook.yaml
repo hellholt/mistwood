@@ -18,6 +18,7 @@ spec:
       values: |
         ingress:
           enabled: yes
+          className: 'traefik'
           annotations:
             cert-manager.io/cluster-issuer: 'letsencrypt-prod'
             kubernetes.io/ingress.class: 'traefik'

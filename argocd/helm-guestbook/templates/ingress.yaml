@@ -9,6 +9,9 @@ metadata:
 {{ toYaml .Values.ingress.labels | indent 4 }}
   name: {{ template "helm-guestbook.fullname" .}}-socks-ingress
 spec:
+{{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+{{- end }}
 {{- if .Values.ingress.tls }}
   tls:
   {{- range .Values.ingress.tls }}
@@ -28,7 +31,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: http
+                name: guestbook-svc
                 port:
                   number: {{ $.Values.service.port }}
   {{- end }}
